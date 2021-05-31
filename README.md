@@ -1,6 +1,6 @@
 # M-LSD: Towards Light-weight and Real-time Line Segment Detection
 
-[Paper](TODO) • [Colab](TODO) • [PPT](TODO)
+[Paper](TODO) • [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) • [PPT](TODO)
 
 Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"*
 
@@ -54,7 +54,7 @@ $ python demo_MLSD.py
 ```
 
 ### Colab notebook
-You can jump right into line segment and box detection using M-LSD with our [Colab notebook](TODO).
+You can jump right into line segment and box detection using M-LSD with our [Colab notebook](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb).
 The notebook supports interactive UI with [Gradio](https://gradio.app/) as below.
 
 <img src=".github/gradio.png" height="350">
