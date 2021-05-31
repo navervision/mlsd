@@ -3,7 +3,6 @@ M-LSD
 Copyright 2021-present NAVER Corp.
 Apache License v2.0
 '''
-
 # for demo
 import os
 from flask import Flask, request, session, json, Response, render_template, abort, send_from_directory
@@ -21,7 +20,7 @@ from PIL import Image
 import tensorflow as tf
 
 # for square detector
-from postprocess_for_scan import postprocess_for_scan
+from utils import pred_squares
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '' # CPU mode
 
@@ -89,20 +88,7 @@ class model_graph:
 
 
     def pred_tflite(self, image):
-        # get ratio
-        h, w, _ = image.shape
-        
-        # run tflite
-        resized_image = np.concatenate([cv2.resize(image, (self.args.input_size, self.args.input_size), interpolation=cv2.INTER_AREA), np.ones([self.args.input_size, self.args.input_size, 1])], axis=-1)
-        batch_image = np.expand_dims(resized_image, axis=0).astype('float32')
-        self.interpreter.set_tensor(self.input_details[0]['index'], batch_image)
-        self.interpreter.invoke()
-
-        pts = self.interpreter.get_tensor(self.output_details[0]['index'])[0]
-        pts_score = self.interpreter.get_tensor(self.output_details[1]['index'])[0]
-        vmap_act = self.interpreter.get_tensor(self.output_details[2]['index'])[0]
-        
-        segments, squares, score_array, inter_points = postprocess_for_scan(pts, pts_score, vmap_act, [h, w], [self.args.input_size, self.args.input_size], params=self.params)
+        segments, squares, score_array, inter_points = pred_squares(image, self.interpreter, self.input_details, self.output_details, [self.args.input_size, self.args.input_size], params=self.params)
 
         output = {}
         output['segments'] = segments

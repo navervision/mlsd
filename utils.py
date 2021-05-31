@@ -3,24 +3,78 @@ M-LSD
 Copyright 2021-present NAVER Corp.
 Apache License v2.0
 '''
-
 import os
 import numpy as np
+import cv2
 import tensorflow as tf
 
-def postprocess_for_scan(pts, pts_score, vmap, original_shape,
-                         input_shape=[512, 512],
-                         params={'score': 0.06,
-                                 'outside_ratio': 0.28,
-                                 'inside_ratio': 0.45,
-                                 'w_overlap': 0.0,
-                                 'w_degree': 1.95,
-                                 'w_length': 0.0,
-                                 'w_area': 1.86,
-                                 'w_center': 0.14}):
+
+def pred_lines(image, interpreter, input_details, output_details, input_shape=[512, 512], score_thr=0.10, dist_thr=20.0):
+    h, w, _ = image.shape
+    h_ratio, w_ratio = [h / input_shape[0], w / input_shape[1]]
+
+    resized_image = np.concatenate([cv2.resize(image, (input_shape[0], input_shape[1]), interpolation=cv2.INTER_AREA), np.ones([input_shape[0], input_shape[1], 1])], axis=-1)
+    batch_image = np.expand_dims(resized_image, axis=0).astype('float32')
+    interpreter.set_tensor(input_details[0]['index'], batch_image)
+    interpreter.invoke()
+
+    pts = interpreter.get_tensor(output_details[0]['index'])[0]
+    pts_score = interpreter.get_tensor(output_details[1]['index'])[0]
+    vmap = interpreter.get_tensor(output_details[2]['index'])[0]
+
+    start = vmap[:,:,:2]
+    end = vmap[:,:,2:]
+    dist_map = np.sqrt(np.sum((start - end) ** 2, axis=-1))
+
+    segments_list = []
+    for center, score in zip(pts, pts_score):
+        y, x = center
+        distance = dist_map[y, x]
+        if score > score_thr and distance > dist_thr:
+            disp_x_start, disp_y_start, disp_x_end, disp_y_end = vmap[y, x, :]
+            x_start = x + disp_x_start
+            y_start = y + disp_y_start
+            x_end = x + disp_x_end
+            y_end = y + disp_y_end
+            segments_list.append([x_start, y_start, x_end, y_end])
+    
+    lines = 2 * np.array(segments_list) # 256 > 512
+    lines[:,0] = lines[:,0] * w_ratio
+    lines[:,1] = lines[:,1] * h_ratio
+    lines[:,2] = lines[:,2] * w_ratio
+    lines[:,3] = lines[:,3] * h_ratio
+
+    return lines
+
+
+def pred_squares(image,
+                 interpreter,
+                 input_details,
+                 output_details,
+                 input_shape=[512, 512],
+                 params={'score': 0.06,
+                         'outside_ratio': 0.28,
+                         'inside_ratio': 0.45,
+                         'w_overlap': 0.0,
+                         'w_degree': 1.95,
+                         'w_length': 0.0,
+                         'w_area': 1.86,
+                         'w_center': 0.14}):
     '''
     shape = [height, width]
     '''
+    h, w, _ = image.shape
+    original_shape = [h, w]
+
+    resized_image = np.concatenate([cv2.resize(image, (input_shape[0], input_shape[1]), interpolation=cv2.INTER_AREA), np.ones([input_shape[0], input_shape[1], 1])], axis=-1)
+    batch_image = np.expand_dims(resized_image, axis=0).astype('float32')
+    interpreter.set_tensor(input_details[0]['index'], batch_image)
+    interpreter.invoke()
+
+    pts = interpreter.get_tensor(output_details[0]['index'])[0]
+    pts_score = interpreter.get_tensor(output_details[1]['index'])[0]
+    vmap = interpreter.get_tensor(output_details[2]['index'])[0]
+    
     start = vmap[:,:,:2] # (x, y)
     end = vmap[:,:,2:] # (x, y)
     dist_map = np.sqrt(np.sum((start - end) ** 2, axis=-1))
@@ -211,19 +265,19 @@ def postprocess_for_scan(pts, pts_score, vmap, original_shape,
             outside_ratio = params['outside_ratio'] # over ratio >>> drop it!
             inside_ratio = params['inside_ratio'] # over ratio >>> drop it!
             check_distance = ((dist_inter_to_segment1[i,j,1] >= dist_segments[i] and \
-                               dist_inter_to_segment1[i,j,0] <= dist_segments[i] * outside_ratio) or \
-                              (dist_inter_to_segment1[i,j,1] <= dist_segments[i] and \
-                               dist_inter_to_segment1[i,j,0] <= dist_segments[i] * inside_ratio)) and \
+                                 dist_inter_to_segment1[i,j,0] <= dist_segments[i] * outside_ratio) or \
+                                (dist_inter_to_segment1[i,j,1] <= dist_segments[i] and \
+                                 dist_inter_to_segment1[i,j,0] <= dist_segments[i] * inside_ratio)) and \
                              ((dist_inter_to_segment2[i,j,1] >= dist_segments[j] and \
-                               dist_inter_to_segment2[i,j,0] <= dist_segments[j] * outside_ratio) or \
-                              (dist_inter_to_segment2[i,j,1] <= dist_segments[j] and \
-                               dist_inter_to_segment2[i,j,0] <= dist_segments[j] * inside_ratio))
+                                 dist_inter_to_segment2[i,j,0] <= dist_segments[j] * outside_ratio) or \
+                                (dist_inter_to_segment2[i,j,1] <= dist_segments[j] and \
+                                 dist_inter_to_segment2[i,j,0] <= dist_segments[j] * inside_ratio))
 
             if check_degree and check_distance:
                 corner_info = None
 
                 if (deg1 >= 0 and deg1 <= 45 and deg2 >=45 and deg2 <= 120) or \
-                   (deg2 >= 315 and deg1 >= 45 and deg1 <= 120):
+                     (deg2 >= 315 and deg1 >= 45 and deg1 <= 120):
                     corner_info, color_info = 0, 'blue'
                 elif (deg1 >= 45 and deg1 <= 125 and deg2 >= 125 and deg2 <= 225):
                     corner_info, color_info = 1, 'green'
@@ -346,7 +400,7 @@ def postprocess_for_scan(pts, pts_score, vmap, original_shape,
             perimeter = 0
             # check 0 > 1 > 2 > 3
             square_length = []
-           
+             
             for start_idx in range(4):
                 end_idx = (start_idx + 1) % 4
                 
@@ -393,10 +447,10 @@ def postprocess_for_scan(pts, pts_score, vmap, original_shape,
             length_scores.append((len_ratio1 + len_ratio2) / 2)
 
             ######################################
-      
+        
         overlap_scores = np.array(overlap_scores)
         overlap_scores /= np.max(overlap_scores)
-          
+            
         degree_scores = np.array(degree_scores)
         #degree_scores /= np.max(degree_scores)
         
@@ -425,10 +479,10 @@ def postprocess_for_scan(pts, pts_score, vmap, original_shape,
         '''
         score_w = [0.0, 1.0, 10.0, 0.5, 1.0]
         score_array = params['w_overlap'] * overlap_scores \
-                      + params['w_degree'] * degree_scores \
-                      + params['w_area'] * area_scores \
-                      - params['w_center'] * center_scores \
-                      + params['w_length'] * length_scores
+                        + params['w_degree'] * degree_scores \
+                        + params['w_area'] * area_scores \
+                        - params['w_center'] * center_scores \
+                        + params['w_length'] * length_scores
 
         best_square = []
 
