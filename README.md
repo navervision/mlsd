@@ -11,8 +11,8 @@ Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-tim
 
 ## Overview
 <p float="left">
-  <img src=".github/teaser.png" height="260">
-  <img src=".github/mlsd_mobile.png" height="260">
+  <img src=".github/teaser.png" height="250">
+  <img src=".github/mlsd_mobile.png" height="250">
 </p>
 
 
