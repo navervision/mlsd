@@ -10,10 +10,7 @@ Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-tim
 @NAVER/LINE Vision
 
 ## Overview
-<p float="left">
-  <img src=".github/teaser.png" height="270">
-  <img src=".github/mlsd_mobile.png" height="270">
-</p>
+<img src=".github/mlsd_teaser.png" height="270">
 
 **First figure**: Comparison of M-LSD and existing LSD methods on *GPU*.
 **Second figure**: Inference speed and memory usage on *mobile devices*.
@@ -57,7 +54,7 @@ $ python demo_MLSD.py
 You can jump right into line segment and box detection using M-LSD with our [Colab notebook](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb).
 The notebook supports interactive UI with [Gradio](https://gradio.app/) as below.
 
-<img src=".github/gradio.png" height="350">
+<img src=".github/gradio_example.png" height="350">
 
 ## Citation
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
