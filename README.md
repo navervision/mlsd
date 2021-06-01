@@ -37,9 +37,9 @@ Don't worry about alpha channel. In a stem layer of tflite models, all zero conv
 Post-processing codes for a box detection are built in Numpy. If you consider to run this box dectector on mobile devices, we recommend porting post-processing codes to [eigen3](https://eigen.tuxfamily.org/index.php?title=Main_Page)-based codes.
 
 <p float="left">
-  <img src=".github/realtime_demo1.gif" height="250">
-  <img src=".github/realtime_demo2.gif" height="250">
-  <img src=".github/realtime_demo3.gif" height="250">
+  <img src=".github/realtime_demo1.gif" height="240">
+  <img src=".github/realtime_demo2.gif" height="240">
+  <img src=".github/realtime_demo3.gif" height="240">
 </p>
 
 *Above examples are captured using M-LSD tiny with 512 input size*
