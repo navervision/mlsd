@@ -10,7 +10,11 @@ Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-tim
 @NAVER/LINE Vision
 
 ## Overview
-<img src=".github/mlsd_teaser.png" height="270">
+<p float="left">
+  <img src=".github/teaser.png" height="260">
+  <img src=".github/mlsd_mobile.png" height="260">
+</p>
+
 
 **First figure**: Comparison of M-LSD and existing LSD methods on *GPU*.
 **Second figure**: Inference speed and memory usage on *mobile devices*.
