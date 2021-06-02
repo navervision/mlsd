@@ -1,10 +1,8 @@
-import os
-import subprocess
 from PIL import Image
 import cv2
 import numpy as np
 import tensorflow as tf
-from mlsd.utils import pred_lines, pred_squares
+from utils import pred_lines, pred_squares
 import gradio as gr
 from urllib.request import urlretrieve
 
