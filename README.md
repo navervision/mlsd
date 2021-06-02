@@ -60,6 +60,9 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 
 <img src=".github/gradio_example.png" height="350">
 
+### Gradio Hub Web Demo
+[Gradio Web Demo](https://gradio.app/g/AK391/mlsd)
+
 ## Citation
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
 
