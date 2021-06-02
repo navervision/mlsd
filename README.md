@@ -1,6 +1,6 @@
 # M-LSD: Towards Light-weight and Real-time Line Segment Detection
 
-[Paper](TODO) • [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) • [PPT](TODO)
+[Paper](https://arxiv.org/abs/2106.00186) • [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) • [PPT](https://www.slideshare.net/ByungSooKo1/towards-lightweight-and-realtime-line-segment-detection)
 
 Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"*
 
@@ -10,7 +10,11 @@ Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-tim
 @NAVER/LINE Vision
 
 ## Overview
-<img src=".github/mlsd_teaser.png" height="270">
+<p float="left">
+  <img src=".github/teaser.png" height="250">
+  <img src=".github/mlsd_mobile.png" height="250">
+</p>
+
 
 **First figure**: Comparison of M-LSD and existing LSD methods on *GPU*.
 **Second figure**: Inference speed and memory usage on *mobile devices*.
@@ -33,9 +37,9 @@ Don't worry about alpha channel. In a stem layer of tflite models, all zero conv
 Post-processing codes for a box detection are built in Numpy. If you consider to run this box dectector on mobile devices, we recommend porting post-processing codes to [eigen3](https://eigen.tuxfamily.org/index.php?title=Main_Page)-based codes.
 
 <p float="left">
-  <img src=".github/realtime_demo1.gif" height="250">
-  <img src=".github/realtime_demo2.gif" height="250">
-  <img src=".github/realtime_demo3.gif" height="250">
+  <img src=".github/realtime_demo1.gif" height="240">
+  <img src=".github/realtime_demo2.gif" height="240">
+  <img src=".github/realtime_demo3.gif" height="240">
 </p>
 
 *Above examples are captured using M-LSD tiny with 512 input size*
@@ -60,7 +64,14 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
 
 ```
-TODO
+@misc{gu2021realtime,
+    title={Towards Real-time and Light-weight Line Segment Detection},
+    author={Geonmo Gu and Byungsoo Ko and SeoungHyun Go and Sung-Hyun Lee and Jingeun Lee and Minchul Shin},
+    year={2021},
+    eprint={2106.00186},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
 ```
 
 ## License
