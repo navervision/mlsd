@@ -1,6 +1,6 @@
 # M-LSD: Towards Light-weight and Real-time Line Segment Detection
 
-[Paper](TODO) • [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) • [PPT](https://www.slideshare.net/ByungSooKo1/towards-lightweight-and-realtime-line-segment-detection)
+[Paper](https://arxiv.org/abs/2106.00186) • [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) • [PPT](https://www.slideshare.net/ByungSooKo1/towards-lightweight-and-realtime-line-segment-detection)
 
 Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"*
 
