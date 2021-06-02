@@ -64,7 +64,14 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
 
 ```
-TODO
+@misc{gu2021realtime,
+    title={Towards Real-time and Light-weight Line Segment Detection},
+    author={Geonmo Gu and Byungsoo Ko and SeoungHyun Go and Sung-Hyun Lee and Jingeun Lee and Minchul Shin},
+    year={2021},
+    eprint={2106.00186},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
 ```
 
 ## License
