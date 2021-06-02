@@ -3,3 +3,4 @@ opencv-python
 pillow
 tensorflow-gpu
 Flask
+gradio
