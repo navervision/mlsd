@@ -1,6 +1,8 @@
 # M-LSD: Towards Light-weight and Real-time Line Segment Detection
 
-[Paper](https://arxiv.org/abs/2106.00186) • [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) • [PPT](https://www.slideshare.net/ByungSooKo1/towards-lightweight-and-realtime-line-segment-detection)
+[Paper](https://arxiv.org/abs/2106.00186) | [Colab](https://colab.research.google.com/gist/geonm/16b7e4bad577511d2313bf0337029bfc/mlsd_demo.ipynb) | [PPT](https://www.slideshare.net/ByungSooKo1/towards-lightweight-and-realtime-line-segment-detection)
+
+[Gradio Web Demo](https://gradio.app/g/AK391/mlsd) by [AK391](https://github.com/AK391)
 
 Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"*
 
@@ -60,8 +62,6 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 
 <img src=".github/gradio_example.png" height="350">
 
-### Gradio Hub Web Demo
-[Gradio Web Demo](https://gradio.app/g/AK391/mlsd)
 
 ## Citation
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
