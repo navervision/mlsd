@@ -64,6 +64,8 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 
 <img src=".github/gradio_example.png" height="350">
 
+### Pytorch demo
+https://github.com/lhwcv/mlsd_pytorch (by [lhwcv](https://github.com/lhwcv))
 
 ## Citation
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
