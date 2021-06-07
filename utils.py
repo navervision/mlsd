@@ -60,9 +60,6 @@ def pred_squares(image,
                          'w_length': 0.0,
                          'w_area': 1.86,
                          'w_center': 0.14}):
-    '''
-    shape = [height, width]
-    '''
     h, w, _ = image.shape
     original_shape = [h, w]
 
@@ -230,11 +227,6 @@ def pred_squares(image,
     deg_inter_to_end[deg_inter_to_end < 0.0] += 360
     
     '''
-    B -- G
-    |    |
-    C -- R
-    B : blue / G: green / C: cyan / R: red
-    
     0 -- 1
     |    |
     3 -- 2
@@ -492,10 +484,6 @@ def pred_squares(image,
 
     except Exception as e:
         pass
-    
-    '''return list
-    merged_lines, squares, scores
-    '''
     
     try:
         new_segments[:,0] = new_segments[:,0] * 2 / input_shape[1] * original_shape[1]
