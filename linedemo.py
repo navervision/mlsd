@@ -8,7 +8,7 @@ from urllib.request import urlretrieve
 
 
 # Load MLSD 512 Large FP32 tflite
-model_name = 'tflite_models/M-LSD_512_large_fp32.tflite'
+model_name = 'tflite_models/M-LSD_512_large_fp32_test.tflite'
 interpreter = tf.lite.Interpreter(model_path=model_name)
 
 interpreter.allocate_tensors()
@@ -43,6 +43,7 @@ iface = gr.Interface(gradio_wrapper_for_LSD,
                      description="M-LSD is a light-weight and real-time deep line segment detector, which can run on GPU, CPU, and even on Mobile devices. Try it by uploading an image or clicking on an example. Read more at the links below",
                      article="<p style='text-align: center'><a href='https://arxiv.org/abs/2106.00186'>Towards Real-time and Light-weight Line Segment Detection</a> | <a href='https://github.com/navervision/mlsd'>Github Repo</a></p>",
                      examples=sample_images,
+                     server_name="0.0.0.0",
                      allow_screenshot=True)
 
 iface.launch()

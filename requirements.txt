@@ -1,6 +1,6 @@
 numpy
 opencv-python
 pillow
-tensorflow-gpu
+tensorflow-gpu=2.3.0
 Flask
 gradio
