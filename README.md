@@ -67,6 +67,23 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 ### Pytorch demo
 https://github.com/lhwcv/mlsd_pytorch (by [lhwcv](https://github.com/lhwcv))
 
+## How to convert ckpt models to tflite models
+NOTE: Tflite converter can convert the ckpt models without any problem.
+```
+# M-LSD_512_large_fp32 with RGBA input
+python frozen_models.py \
+--model_path=./ckpt_models/M-LSD_512_large \
+--model_tflite_path=./tflite_models/M-LSD_512_large_fp32.tflite \
+--input_size=512 \
+--map_size=256 \
+--batch_size=1 \
+--dilate=5 \
+--with_alpha=True \
+--backbone_type=MLSD_large \
+--topk=200 \
+--fp16=False
+```
+
 ## Citation
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
 
