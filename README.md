@@ -68,7 +68,7 @@ The notebook supports interactive UI with [Gradio](https://gradio.app/) as below
 https://github.com/lhwcv/mlsd_pytorch (by [lhwcv](https://github.com/lhwcv))
 
 ## How to convert ckpt models to tflite models
-NOTE: Tflite converter can convert the ckpt models without any problem.
+NOTE: TFlite converter can convert the ckpt models without any problem.
 ```
 # M-LSD_512_large_fp32 with RGBA input
 python frozen_models.py \
