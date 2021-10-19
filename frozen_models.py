@@ -37,6 +37,8 @@ flags.DEFINE_integer('topk', 200, 'topk')
 flags.DEFINE_boolean('final_padding_same', True, '')
 flags.DEFINE_float('center_thr', 0.001, 'weight for loss_center_map')
 
+flags.DEFINE_float('wd', 0.0001, 'weight decay value')
+
 def main(_):
     # initialize systems
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'

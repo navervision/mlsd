@@ -8,7 +8,7 @@ from urllib.request import urlretrieve
 
 
 # Load MLSD 512 Large FP32 tflite
-model_name = 'tflite_models/M-LSD_512_large_fp32_test.tflite'
+model_name = 'tflite_models/M-LSD_512_large_fp32.tflite'
 interpreter = tf.lite.Interpreter(model_path=model_name)
 
 interpreter.allocate_tensors()
