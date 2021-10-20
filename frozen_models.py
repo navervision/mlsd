@@ -1,3 +1,8 @@
+'''
+M-LSD
+Copyright 2021-present NAVER Corp.
+Apache License v2.0
+'''
 from absl import app, flags, logging
 from absl.flags import FLAGS
 import os

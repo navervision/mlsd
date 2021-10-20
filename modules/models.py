@@ -1,3 +1,8 @@
+'''
+M-LSD
+Copyright 2021-present NAVER Corp.
+Apache License v2.0
+'''
 import tensorflow as tf
 from tensorflow.keras import Model
 from tensorflow.keras.applications import ResNet50
