@@ -53,9 +53,14 @@ Post-processing codes for a box detection are built in Numpy. If you consider to
 ```
 $ pip install -r requirements.txt
 ```
-#### Run demo
+#### Run line segment and box detector demo
 ```
 $ python demo_MLSD.py
+```
+
+#### Run line segment detector demo with gradio
+```
+$ python linedemo.py
 ```
 
 ### Colab notebook
@@ -80,6 +85,45 @@ python frozen_models.py \
 --dilate=5 \
 --with_alpha=True \
 --backbone_type=MLSD_large \
+--topk=200 \
+--fp16=False
+
+# M-LSD_320_large_fp32 with RGBA input
+python frozen_models.py \
+--model_path=./ckpt_models/M-LSD_320_large \
+--model_tflite_path=./tflite_models/M-LSD_320_large_fp32.tflite \
+--input_size=320 \
+--map_size=160 \
+--batch_size=1 \
+--dilate=5 \
+--with_alpha=True \
+--backbone_type=MLSD_large \
+--topk=200 \
+--fp16=False
+
+# M-LSD_512_tiny_fp32 with RGBA input
+python frozen_models.py \
+--model_path=./ckpt_models/M-LSD_512_tiny \
+--model_tflite_path=./tflite_models/M-LSD_512_tiny_fp32.tflite \
+--input_size=512 \
+--map_size=256 \
+--batch_size=1 \
+--dilate=5 \
+--with_alpha=True \
+--backbone_type=MLSD \
+--topk=200 \
+--fp16=False
+
+# M-LSD_320_tiny_fp32 with RGBA input
+python frozen_models.py \
+--model_path=./ckpt_models/M-LSD_320_tiny \
+--model_tflite_path=./tflite_models/M-LSD_320_tiny_fp32.tflite \
+--input_size=512 \
+--map_size=256 \
+--batch_size=1 \
+--dilate=5 \
+--with_alpha=True \
+--backbone_type=MLSD \
 --topk=200 \
 --fp16=False
 ```
