@@ -5,18 +5,22 @@ import tensorflow as tf
 from utils import pred_lines, pred_squares
 import gradio as gr
 from urllib.request import urlretrieve
+import argparse
 
+parser = argparse.ArgumentParser('M-LSD demo')
+parser.add_argument('--model_path', default='tflite_models/M-LSD_512_large_fp32.tflite', type=str, help='path to tflite model')
+parser.add_argument('--input_size', default=512, type=int, choices=[512, 320], help='input size')
+args = parser.parse_args()
 
-# Load MLSD 512 Large FP32 tflite
-model_name = 'tflite_models/M-LSD_512_large_fp32.tflite'
-interpreter = tf.lite.Interpreter(model_path=model_name)
+# Load tflite model
+interpreter = tf.lite.Interpreter(model_path=args.model_path)
 
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
 def gradio_wrapper_for_LSD(img_input, score_thr, dist_thr):
-  lines = pred_lines(img_input, interpreter, input_details, output_details, input_shape=[512, 512], score_thr=score_thr, dist_thr=dist_thr)
+  lines = pred_lines(img_input, interpreter, input_details, output_details, input_shape=[args.input_size, args.input_size], score_thr=score_thr, dist_thr=dist_thr)
   img_output = img_input.copy()
 
   # draw lines
