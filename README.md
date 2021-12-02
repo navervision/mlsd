@@ -1,6 +1,6 @@
 # M-LSD: Towards Light-weight and Real-time Line Segment Detection
 
-Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"*
+Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"* (AAAI 2022)
 
 **Geonmo Gu\*, Byungsoo Ko\*, SeoungHyun Go, Sung-Hyun Lee, Jingeun Lee, Minchul Shin**
 (* Authors contributed equally.)
@@ -132,13 +132,11 @@ python frozen_models.py \
 If you find *M-LSD* useful in your project, please consider to cite the following paper.
 
 ```
-@misc{gu2021realtime,
+@inproceedings{gu2021realtime,
     title={Towards Real-time and Light-weight Line Segment Detection},
     author={Geonmo Gu and Byungsoo Ko and SeoungHyun Go and Sung-Hyun Lee and Jingeun Lee and Minchul Shin},
-    year={2021},
-    eprint={2106.00186},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+    booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+    year={2022},
 }
 ```
 
