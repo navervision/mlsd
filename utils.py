@@ -462,7 +462,7 @@ def pred_squares(image,
         centers = np.array([[256 // 2, 256 // 2]], dtype='float32') # [1, 2]
         # squares: [n, 4, 2]
         square_centers = np.mean(squares, axis=1) # [n, 2]
-        center2center = np.sqrt(np.sum((centers - square_centers) ** 2))
+        center2center = np.sqrt(np.sum((centers - square_centers) ** 2, axis=1))
         center_scores = center2center / (map_size / np.sqrt(2.0))
 
 
