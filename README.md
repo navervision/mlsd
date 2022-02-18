@@ -1,6 +1,6 @@
 # M-LSD: Towards Light-weight and Real-time Line Segment Detection
 
-Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"* (AAAI 2022)
+Official Tensorflow implementation of *"M-LSD: Towards Light-weight and Real-time Line Segment Detection"* (AAAI 2022 Oral session)
 
 **Geonmo Gu\*, Byungsoo Ko\*, SeoungHyun Go, Sung-Hyun Lee, Jingeun Lee, Minchul Shin**
 (* Authors contributed equally.)
