@@ -133,7 +133,7 @@ If you find *M-LSD* useful in your project, please consider to cite the followin
 
 ```
 @inproceedings{gu2021realtime,
-    title={Towards Real-time and Light-weight Line Segment Detection},
+    title={Towards Light-weight and Real-time Line Segment Detection},
     author={Geonmo Gu and Byungsoo Ko and SeoungHyun Go and Sung-Hyun Lee and Jingeun Lee and Minchul Shin},
     booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
     year={2022},
